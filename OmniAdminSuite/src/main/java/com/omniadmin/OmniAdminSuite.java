@@ -28,12 +28,12 @@ public class OmniAdminSuite extends JavaPlugin {
         vanishManager    = new VanishManager(this);
         godModeManager   = new GodModeManager(this);
 
-        // GUIs
+        // MainMenuGUI MUST be created first — other GUIs depend on its registry
+        mainMenu     = new MainMenuGUI(this);
         playerAdmin  = new PlayerAdminGUI(this);
         worldEdit    = new WorldEditGUI(this);
         serverControl= new ServerControlGUI(this);
         selfPowers   = new SelfPowersGUI(this);
-        mainMenu     = new MainMenuGUI(this);
 
         // Listeners
         getServer().getPluginManager().registerEvents(mainMenu,      this);
