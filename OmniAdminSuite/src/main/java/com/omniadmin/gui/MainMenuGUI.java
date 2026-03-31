@@ -1,7 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.Component;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ public class MainMenuGUI extends GuiBase implements Listener {
 
     public void open(Player admin) {
         Inventory gui = Bukkit.createInventory(null, 27,
-                Component.text("§0§lOmniAdmin §8// §6Command Center"));
+                "§0§lOmniAdmin §8// §6Command Center");
 
         // Row 0: decorative header
         fillRow(gui, 0, Material.GRAY_STAINED_GLASS_PANE);
@@ -89,7 +89,7 @@ public class MainMenuGUI extends GuiBase implements Listener {
 
     private void openSnapshotMenu(Player admin) {
         Inventory gui = Bukkit.createInventory(null, 36,
-                Component.text("§d§lSnapshots"));
+                "§d§lSnapshots");
 
         int slot = 0;
         for (Player target : plugin.getServer().getOnlinePlayers()) {
@@ -97,10 +97,10 @@ public class MainMenuGUI extends GuiBase implements Listener {
             org.bukkit.inventory.ItemStack head = new org.bukkit.inventory.ItemStack(Material.PLAYER_HEAD);
             org.bukkit.inventory.meta.SkullMeta sm = (org.bukkit.inventory.meta.SkullMeta) head.getItemMeta();
             sm.setOwningPlayer(target);
-            sm.displayName(Component.text("§e" + target.getName()));
-            sm.lore(java.util.List.of(
-                Component.text("§aLeft-click §7to save snapshot"),
-                Component.text("§cRight-click §7to load snapshot")
+            sm.setDisplayName("§e" + target.getName());
+            sm.setLore(java.util.List.of(
+                "§aLeft-click §7to save snapshot",
+                "§cRight-click §7to load snapshot"
             ));
             head.setItemMeta(sm);
             gui.setItem(slot++, head);
