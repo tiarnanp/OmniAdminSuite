@@ -1,12 +1,12 @@
 package com.omniadmin.gui;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -24,34 +24,26 @@ public abstract class GuiBase {
         Material.GLASS_PANE
     );
 
-    /** Create a named item with optional lore lines. */
     protected ItemStack make(Material mat, String name, String... lore) {
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return item;
-        meta.displayName(Component.text(name));
-        if (lore.length > 0) {
-            List<Component> loreList = new ArrayList<>();
-            for (String line : lore) loreList.add(Component.text(line));
-            meta.lore(loreList);
-        }
+        meta.setDisplayName(name);
+        if (lore.length > 0) meta.setLore(Arrays.asList(lore));
         item.setItemMeta(meta);
         return item;
     }
 
-    /** Standard back/close button. */
     protected ItemStack backButton() {
         return make(Material.BARRIER, "§c§lBack", "§7Return to previous menu");
     }
 
-    /** Toggle button that shows ON/OFF state. */
     protected ItemStack toggleButton(Material mat, String name, boolean enabled) {
         String state  = enabled ? "§a§lON"  : "§c§lOFF";
         String action = enabled ? "§7Click to disable" : "§7Click to enable";
         return make(mat, name, "§7Status: " + state, action);
     }
 
-    /** Fill an entire inventory with gray glass panes (empty slots only). */
     protected void fill(Inventory inv) {
         ItemStack pane = make(Material.GRAY_STAINED_GLASS_PANE, " ");
         for (int i = 0; i < inv.getSize(); i++) {
@@ -59,31 +51,22 @@ public abstract class GuiBase {
         }
     }
 
-    /** Fill a specific row (0-indexed) with the given material. */
     protected void fillRow(Inventory inv, int row, Material mat) {
         ItemStack pane = make(mat, " ");
         int start = row * 9;
-        for (int i = start; i < start + 9; i++) {
-            inv.setItem(i, pane);
-        }
+        for (int i = start; i < start + 9; i++) inv.setItem(i, pane);
     }
 
-    /** Returns true if the item is a stained glass pane (used as UI decoration). */
     protected boolean isPane(ItemStack item) {
         if (item == null) return false;
         return PANES.contains(item.getType());
     }
 
-    /** Returns the plain display name of an item, or its material name as fallback. */
     protected String plainName(ItemStack item) {
         if (item == null) return "Air";
         ItemMeta meta = item.getItemMeta();
-        if (meta != null && meta.hasDisplayName()) {
-            // Strip legacy colour codes
-            return meta.displayName().toString()
-                .replaceAll("§[0-9a-fk-or]", "")
-                .replaceAll("<[^>]+>", "");
-        }
+        if (meta != null && meta.hasDisplayName())
+            return meta.getDisplayName().replaceAll("§[0-9a-fk-or]", "");
         return item.getType().name().replace("_", " ");
     }
 }
