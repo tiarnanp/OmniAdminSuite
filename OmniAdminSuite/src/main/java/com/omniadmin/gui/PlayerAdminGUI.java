@@ -1,7 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.Component;
+
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -36,7 +36,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         size = Math.min(size, 54);
 
         Inventory gui = Bukkit.createInventory(null, size,
-                Component.text("§e§lPlayer Control §8// §7Select Target"));
+                "§e§lPlayer Control §8// §7Select Target");
 
         int slot = 0;
         for (Player t : online) {
@@ -58,7 +58,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openPlayerDetail(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§e§l" + t.getName() + " §8// §7Player Detail"));
+                "§e§l" + t.getName( + " §8// §7Player Detail"));
 
         // ── Row 0: Player info head ──────────────────────────────
         gui.setItem(4, makeDetailHead(t));
@@ -108,7 +108,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openInventoryViewer(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§2§l" + t.getName() + "'s Inventory"));
+                "§2§l" + t.getName( + "'s Inventory"));
 
         PlayerInventory inv = t.getInventory();
 
@@ -141,7 +141,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openEnderChestViewer(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§5§l" + t.getName() + "'s Ender Chest"));
+                "§5§l" + t.getName( + "'s Ender Chest"));
 
         Inventory ec = t.getEnderChest();
         for (int i = 0; i < 27; i++) gui.setItem(9 + i, orPane(ec.getItem(i), "§8Empty"));
@@ -162,7 +162,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openEffectsMenu(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§b§l" + t.getName() + "'s Effects"));
+                "§b§l" + t.getName( + "'s Effects"));
 
         // Show current active effects
         int slot = 0;
@@ -203,7 +203,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openItemAction(Player admin, Player t, ItemStack item, int srcSlot, String src) {
         Inventory gui = Bukkit.createInventory(null, 27,
-                Component.text("§c§lItem: §f" + plainName(item)));
+                "§c§lItem: §f" + plainName(item));
 
         gui.setItem(13, item.clone());
 
@@ -395,7 +395,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
                 admin.sendMessage("§a✔ Unfroze §e" + t.getName());
             }
             case 32 -> {
-                Bukkit.broadcast(Component.text("§e§l[ADMIN] §fPlayer §e" + t.getName() + " §fis under admin review."));
+                Bukkit.broadcastMessage("§e§l[ADMIN] §fPlayer §e" + t.getName( + " §fis under admin review."));
                 admin.sendMessage("§aBroadcast sent.");
             }
             case 33 -> {
@@ -525,7 +525,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openTeleportOptions(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 27,
-                Component.text("§d§lTeleport: §e" + t.getName()));
+                "§d§lTeleport: §e" + t.getName());
 
         gui.setItem(10, make(Material.ENDER_PEARL,  "§d§lTP to Them",           "§7Teleport yourself to " + t.getName()));
         gui.setItem(11, make(Material.ENDER_EYE,    "§b§lBring Them Here",      "§7Pull " + t.getName() + " to your location"));
@@ -582,7 +582,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openXpSetter(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 27,
-                Component.text("§6§lSet XP Level: §e" + t.getName()));
+                "§6§lSet XP Level: §e" + t.getName());
 
         int[] levels = {0,1,5,10,15,20,30,50,100};
         int[] slots  = {10,11,12,13,14,15,16,17,9};
@@ -637,15 +637,15 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         SkullMeta sm = (SkullMeta) head.getItemMeta();
         sm.setOwningPlayer(p);
         double maxHp = Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-        sm.displayName(Component.text("§e§l" + p.getName()));
-        sm.lore(List.of(
-            Component.text("§7HP: §c" + String.format("%.1f",p.getHealth()) + "§7/§c" + (int)maxHp),
-            Component.text("§7Gamemode: §f" + p.getGameMode().name()),
-            Component.text("§7Level: §a" + p.getLevel()),
-            Component.text("§7World: §f" + p.getWorld().getName()),
-            Component.text("§7Ping: §f" + p.getPing() + "ms"),
-            Component.text(""),
-            Component.text("§eClick to manage")
+        sm.setDisplayName("§e§l" + p.getName());
+        sm.setLore(List.of(
+            "§7HP: §c" + String.format("%.1f",p.getHealth() + "§7/§c" + (int)maxHp),
+            "§7Gamemode: §f" + p.getGameMode(.name()),
+            "§7Level: §a" + p.getLevel(),
+            "§7World: §f" + p.getWorld(.getName()),
+            "§7Ping: §f" + p.getPing( + "ms"),
+            "",
+            "§eClick to manage"
         ));
         head.setItemMeta(sm);
         return head;
@@ -656,18 +656,18 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         SkullMeta sm = (SkullMeta) head.getItemMeta();
         sm.setOwningPlayer(p);
         double maxHp = Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-        sm.displayName(Component.text("§e§l" + p.getName()));
-        sm.lore(List.of(
-            Component.text("§7Health: §c" + String.format("%.1f",p.getHealth()) + "§7/§c"+(int)maxHp),
-            Component.text("§7Food: §6" + p.getFoodLevel() + "§7/§620"),
-            Component.text("§7Gamemode: §f" + p.getGameMode().name()),
-            Component.text("§7XP Level: §a" + p.getLevel()),
-            Component.text("§7Fly: §f" + (p.isFlying()?"§aON":"§cOFF")),
-            Component.text("§7Vanish: §f" + (p.isInvisible()?"§aON":"§cOFF")),
-            Component.text("§7World: §f" + p.getWorld().getName()),
-            Component.text("§7Ping: §f" + p.getPing() + "ms"),
-            Component.text("§7IP: §f" + (p.getAddress()!=null?p.getAddress().getAddress().getHostAddress():"unknown")),
-            Component.text("§7Active Effects: §f" + p.getActivePotionEffects().size())
+        sm.setDisplayName("§e§l" + p.getName());
+        sm.setLore(List.of(
+            "§7Health: §c" + String.format("%.1f",p.getHealth() + "§7/§c"+(int)maxHp),
+            "§7Food: §6" + p.getFoodLevel( + "§7/§620"),
+            "§7Gamemode: §f" + p.getGameMode(.name()),
+            "§7XP Level: §a" + p.getLevel(),
+            "§7Fly: §f" + (p.isFlying(?"§aON":"§cOFF")),
+            "§7Vanish: §f" + (p.isInvisible(?"§aON":"§cOFF")),
+            "§7World: §f" + p.getWorld(.getName()),
+            "§7Ping: §f" + p.getPing( + "ms"),
+            "§7IP: §f" + (p.getAddress(!=null?p.getAddress().getAddress().getHostAddress():"unknown")),
+            "§7Active Effects: §f" + p.getActivePotionEffects(.size())
         ));
         head.setItemMeta(sm);
         return head;
