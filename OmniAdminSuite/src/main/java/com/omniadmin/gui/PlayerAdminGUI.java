@@ -1,6 +1,10 @@
-public void openPlayerDetail(Player admin, Player t) {
-    Inventory gui = Bukkit.createInventory(null, 54,
-            "§e§l" + t.getName() + " §8// §7Player Detail");
+package com.omniadmin.gui;
+
+public class PlayerAdminGUI {
+
+    public void openPlayerDetail(Player admin, Player t) {
+        Inventory gui = Bukkit.createInventory(null, 54,
+                "§e§l" + t.getName() + " §8// §7Player Detail");
 
     // ── Row 0: Player info head ──────────────────────────────
     gui.setItem(4, makeDetailHead(t));
