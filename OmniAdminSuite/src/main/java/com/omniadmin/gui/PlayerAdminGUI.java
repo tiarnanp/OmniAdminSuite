@@ -530,7 +530,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         gui.setItem(10, make(Material.ENDER_PEARL,  "§d§lTP to Them",           "§7Teleport yourself to " + t.getName()));
         gui.setItem(11, make(Material.ENDER_EYE,    "§b§lBring Them Here",      "§7Pull " + t.getName() + " to your location"));
         gui.setItem(12, make(Material.COMPASS,      "§a§lSend to World Spawn",  "§7TP " + t.getName() + " to world spawn (0,64,0)"));
-        gui.setItem(13, make(Material.BED,          "§e§lSend to Their Bed",    "§7TP to their last bed spawn"));
+        gui.setItem(13, make(Material.RED_BED,          "§e§lSend to Their Bed",    "§7TP to their last bed spawn"));
         gui.setItem(14, make(Material.RESPAWN_ANCHOR,"§5§lSend to Nether",      "§7TP " + t.getName() + " to nether spawn"));
         gui.setItem(15, make(Material.END_STONE,    "§8§lSend to The End",      "§7TP " + t.getName() + " to end spawn"));
         gui.setItem(16, make(Material.GRASS_BLOCK,  "§2§lSend to Overworld",    "§7TP " + t.getName() + " to overworld spawn"));
