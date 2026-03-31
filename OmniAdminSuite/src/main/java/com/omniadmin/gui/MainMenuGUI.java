@@ -1,6 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
+import com.omniadmin.gui.GUIRegistry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
