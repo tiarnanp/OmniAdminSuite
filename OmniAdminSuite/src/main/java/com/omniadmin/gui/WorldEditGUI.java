@@ -47,7 +47,7 @@ public class WorldEditGUI extends GuiBase implements Listener {
         gui.setItem(8,  make(Material.STRUCTURE_VOID,  "§8§lUndo Last Fill",            "§7Attempts to undo last fill op","§7(stores one layer in memory)"));
 
         // Row 1: Weather & Time
-        gui.setItem(9,  make(Material.SUN_FLOWER,      "§e§lSet Day",                  "§7Time → 1000 (midday)"));
+        gui.setItem(9,  make(Material.SUNFLOWER,      "§e§lSet Day",                  "§7Time → 1000 (midday)"));
         gui.setItem(10, make(Material.ENDER_EYE,       "§8§lSet Night",                "§7Time → 13000 (midnight)"));
         gui.setItem(11, make(Material.ICE,             "§b§lSet Dusk",                 "§7Time → 12000 (sunset)"));
         gui.setItem(12, make(Material.GLASS,           "§f§lClear Weather",            "§7Sun, no rain, no thunder","§7Duration: 1 hour"));
@@ -63,8 +63,8 @@ public class WorldEditGUI extends GuiBase implements Listener {
         gui.setItem(20, make(Material.DIAMOND_SWORD,   "§e§lToggle PvP",               "§7Uses plugin-level PvP flag"));
         gui.setItem(21, make(Material.CRAFTING_TABLE,  "§a§lToggle Drops",             "§7doMobLoot / doTileDrops","§7Current drops: "+(w.getGameRuleValue(GameRule.DO_MOB_LOOT)?"§aON":"§cOFF")));
         gui.setItem(22, make(Material.FIRE,            "§c§lToggle Fire Spread",       "§7Current: "+(w.getGameRuleValue(GameRule.DO_FIRE_TICK)?"§aON":"§cOFF")));
-        gui.setItem(23, make(Material.TNT,             "§c§lToggle TNT Damage",        "§7Current: "+(w.getGameRuleValue(GameRule.TNT_EXPLODES)?"§aON":"§cOFF")));
-        gui.setItem(24, make(Material.OAK_SAPLING,     "§2§lToggle Leaf Decay",        "§7Current: "+(w.getGameRuleValue(GameRule.LEAVES_DECAY)?"§aON":"§cOFF")));
+        gui.setItem(23, make(Material.TNT,             "§c§lToggle TNT Damage",        "§7Current: "+(w.getGameRuleValue(GameRule.TNT_EXPLODING)?"§aON":"§cOFF")));
+        gui.setItem(24, make(Material.OAK_SAPLING,     "§2§lToggle Leaf Decay",        "§7Current: "+(w.getGameRuleValue(GameRule.LEAF_DECAY)?"§aON":"§cOFF")));
         gui.setItem(25, make(Material.SAND,            "§6§lToggle Gravity",           "§7Toggles randomTickSpeed 0/3"));
         gui.setItem(26, make(Material.BOOK,            "§d§lMore Gamerules →",         "§7Open extended gamerule panel"));
 
@@ -206,8 +206,8 @@ public class WorldEditGUI extends GuiBase implements Listener {
                 admin.sendMessage("§aDrops toggled → " + (!cur?"§aON":"§cOFF")); open(admin);
             }
             case 22 -> toggle(admin, w, GameRule.DO_FIRE_TICK, "doFireTick");
-            case 23 -> toggle(admin, w, GameRule.TNT_EXPLODES, "tntExplodes");
-            case 24 -> toggle(admin, w, GameRule.LEAVES_DECAY, "leavesDecay");
+            case 23 -> toggle(admin, w, GameRule.TNT_EXPLODING, "tntExplodes");
+            case 24 -> toggle(admin, w, GameRule.LEAF_DECAY, "leavesDecay");
             case 25 -> {
                 int ts = w.getGameRuleValue(GameRule.RANDOM_TICK_SPEED) == 0 ? 3 : 0;
                 w.setGameRule(GameRule.RANDOM_TICK_SPEED, ts);
@@ -351,7 +351,7 @@ public class WorldEditGUI extends GuiBase implements Listener {
         for (int x=0; x<16; x++)
         for (int z=0; z<16; z++) {
             org.bukkit.block.Block top = w.getHighestBlockAt(ch.getX()*16+x, ch.getZ()*16+z);
-            w.applyBonemeal(top.getLocation());
+            top.getLocation().getBlock().applyBoneMeal(org.bukkit.block.BlockFace.UP);
         }
     }
 
