@@ -1,7 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.Component;
+
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Biome;
@@ -33,7 +33,7 @@ public class WorldEditGUI extends GuiBase implements Listener {
     public void open(Player admin) {
         World w = admin.getWorld();
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§a§lWorld Control §8// §7" + w.getName()));
+                "§a§lWorld Control §8// §7" + w.getName());
 
         // Row 0: Block manipulation
         gui.setItem(0,  make(Material.GRASS_BLOCK,     "§a§lReplace Looked-At Block",  "§7Changes the block you are","§7currently looking at.","§eClick to open block picker"));
@@ -104,7 +104,7 @@ public class WorldEditGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openBlockPicker(Player admin) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§a§lBlock Picker §8// §7Select Replacement"));
+                "§a§lBlock Picker §8// §7Select Replacement");
 
         Material[] materials = {
             Material.STONE, Material.COBBLESTONE, Material.GRASS_BLOCK, Material.DIRT,
