@@ -217,8 +217,8 @@ public class ServerControlGUI extends GuiBase implements Listener {
             }
             case 38 -> {
                 World w = Bukkit.getWorlds().get(0);
-                boolean cur = Boolean.TRUE.equals(w.getGameRuleValue(GameRule.PVP_ENABLED));
-                w.setGameRule(GameRule.PVP_ENABLED, !cur);
+                boolean cur = Boolean.TRUE.equals(w.getGameRuleValue(GameRule.PVP));
+                w.setGameRule(GameRule.PVP, !cur);
                 admin.sendMessage("§ePvP (global): " + (!cur?"§aON":"§cOFF"));
                 open(admin);
             }
@@ -259,7 +259,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
                 w.setGameRule(GameRule.DO_FIRE_TICK, true);
                 w.setGameRule(GameRule.RANDOM_TICK_SPEED, 3);
                 w.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
-                w.setGameRule(GameRule.TNT_EXPLODING, true);
+                w.setGameRule(GameRule.TNT_EXPLODES, true);
                 admin.sendMessage("§a✔ All gamerules reset to defaults");
                 open(admin);
             }
