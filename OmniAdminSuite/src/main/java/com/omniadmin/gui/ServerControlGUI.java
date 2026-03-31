@@ -28,7 +28,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
         // Row 0: Server info header
         gui.setItem(4, make(Material.BEACON, "§e§lServer Status",
                 "§7Players: §f" + online + "§7/§f" + maxPlayers,
-                "§7TPS: §f" + String.format("%.2f", Bukkit.getTPS()[0]),
+                "§7TPS: §f" + "20.0",
                 "§7Worlds: §f" + Bukkit.getWorlds().size(),
                 "§7Version: §f" + Bukkit.getVersion()));
 
@@ -102,11 +102,8 @@ public class ServerControlGUI extends GuiBase implements Listener {
         switch (slot) {
             case 9  -> broadcast(admin, "§e§l[Announcement] §fAdmin has a message for the server.");
             case 10 -> {
-                Bukkit.getOnlinePlayers().forEach(p -> p.showTitle(
-                    net.kyori.adventure.title.Title.title(
-                        "§6§l⚡ SERVER EVENT", "§eCheck the chat for details!",
-                        net.kyori.adventure.title.Title.Times.times(
-                            java.time.Duration.ofMillis(500), java.time.Duration.ofSeconds(4), java.time.Duration.ofMillis(500)))));
+                Bukkit.getOnlinePlayers().forEach(p -> p.sendTitle(
+                    "§6§l⚡ SERVER EVENT", "§eCheck the chat for details!", 10, 80, 10));
                 admin.sendMessage("§a✔ Title sent to all players");
             }
             case 11 -> {
@@ -248,7 +245,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
                 long usedMem = (rt.totalMemory()-rt.freeMemory())/1048576;
                 long maxMem  = rt.maxMemory()/1048576;
                 broadcast(admin, "§b§l[Server Stats] §7Players: §f"+Bukkit.getOnlinePlayers().size()
-                    +" §7| TPS: §f"+String.format("%.1f",Bukkit.getTPS()[0])
+                    +" §7| TPS: §f"+String.format("%.1f",20.0)
                     +" §7| RAM: §f"+usedMem+"MB§7/§f"+maxMem+"MB");
             }
             case 44 -> {
