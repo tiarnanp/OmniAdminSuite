@@ -58,7 +58,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openPlayerDetail(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                "§e§l" + t.getName( + " §8// §7Player Detail"));
+                "§e§l" + t.getName() + " §8// §7Player Detail"));
 
         // ── Row 0: Player info head ──────────────────────────────
         gui.setItem(4, makeDetailHead(t));
@@ -108,7 +108,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openInventoryViewer(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                "§2§l" + t.getName( + "'s Inventory"));
+                "§2§l" + t.getName() + "'s Inventory"));
 
         PlayerInventory inv = t.getInventory();
 
@@ -141,7 +141,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openEnderChestViewer(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                "§5§l" + t.getName( + "'s Ender Chest"));
+                "§5§l" + t.getName() + "'s Ender Chest"));
 
         Inventory ec = t.getEnderChest();
         for (int i = 0; i < 27; i++) gui.setItem(9 + i, orPane(ec.getItem(i), "§8Empty"));
@@ -162,7 +162,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     public void openEffectsMenu(Player admin, Player t) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                "§b§l" + t.getName( + "'s Effects"));
+                "§b§l" + t.getName() + "'s Effects"));
 
         // Show current active effects
         int slot = 0;
@@ -170,7 +170,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
             Material icon = potionIcon(fx.getType());
             int durationSecs = fx.getDuration() / 20;
             gui.setItem(slot++, make(icon,
-                    "§b" + fx.getType().translationKey(),
+                    "§b" + fx.getType().getName(),
                     "§7Amplifier: §f" + (fx.getAmplifier() + 1),
                     "§7Duration: §f" + (fx.getDuration() == Integer.MAX_VALUE ? "∞" : durationSecs + "s"),
                     "§cLeft-click §7to remove"));
@@ -395,7 +395,7 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
                 admin.sendMessage("§a✔ Unfroze §e" + t.getName());
             }
             case 32 -> {
-                Bukkit.broadcastMessage("§e§l[ADMIN] §fPlayer §e" + t.getName( + " §fis under admin review."));
+                Bukkit.broadcastMessage("§e§l[ADMIN] §fPlayer §e" + t.getName() + " §fis under admin review."));
                 admin.sendMessage("§aBroadcast sent.");
             }
             case 33 -> {
