@@ -19,10 +19,11 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
+        working-directory: OmniAdminSuite
         run: mvn clean package -B
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: OmniAdminSuite
-          path: target/OmniAdminSuite-*.jar
+          path: OmniAdminSuite/target/OmniAdminSuite-*.jar
