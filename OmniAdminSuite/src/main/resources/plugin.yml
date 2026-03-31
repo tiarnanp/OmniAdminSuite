@@ -1,0 +1,21 @@
+name: OmniAdminSuite
+version: '${project.version}'
+main: com.omniadmin.OmniAdminSuite
+api-version: '1.21'
+description: Omnipotent Admin Suite - Complete server control
+authors: [OmniAdmin]
+
+commands:
+  oas:
+    description: Open the OmniAdmin Suite main menu
+    usage: /oas
+    permission: oas.use
+  oasreload:
+    description: Reload OmniAdmin config
+    usage: /oasreload
+    permission: oas.use
+
+permissions:
+  oas.use:
+    description: Full access to OmniAdmin Suite
+    default: op
