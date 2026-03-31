@@ -1,7 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.Component;
+
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
@@ -25,7 +25,7 @@ public class SelfPowersGUI extends GuiBase implements Listener {
         boolean fly       = admin.getAllowFlight();
 
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§b§lSelf Powers §8// §7" + admin.getName()));
+                "§b§lSelf Powers §8// §7" + admin.getName());
 
         // Row 0: Toggles
         gui.setItem(0,  toggleButton(Material.TOTEM_OF_UNDYING, "§c§lGod Mode",   godMode));
@@ -196,7 +196,7 @@ public class SelfPowersGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openSpeedSelector(Player admin, String type) {
         Inventory gui = Bukkit.createInventory(null, 9,
-                Component.text("§6§lSet " + (type.equals("fly")?"Fly":"Walk") + " Speed"));
+                "§6§lSet " + (type.equals("fly"?"Fly":"Walk") + " Speed"));
         float[] speeds = {0.1f,0.2f,0.3f,0.4f,0.5f,0.6f,0.7f,0.8f,1.0f};
         String[] labels = {"§7Slow","§7Normal","§f1.5x","§a2x","§a2.5x","§63x","§64x","§c5x","§4MAX"};
         Material[] icons = {Material.DIRT,Material.GRASS_BLOCK,Material.OAK_PLANKS,Material.GOLD_INGOT,
