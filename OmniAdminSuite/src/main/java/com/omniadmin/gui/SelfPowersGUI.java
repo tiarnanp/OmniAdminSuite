@@ -196,7 +196,7 @@ public class SelfPowersGUI extends GuiBase implements Listener {
     // ──────────────────────────────────────────────────────────────
     private void openSpeedSelector(Player admin, String type) {
         Inventory gui = Bukkit.createInventory(null, 9,
-                "§6§lSet " + (type.equals("fly"?"Fly":"Walk") + " Speed"));
+                "§6§lSet " + (type.equals("fly") ? "Fly" : "Walk") + " Speed");
         float[] speeds = {0.1f,0.2f,0.3f,0.4f,0.5f,0.6f,0.7f,0.8f,1.0f};
         String[] labels = {"§7Slow","§7Normal","§f1.5x","§a2x","§a2.5x","§63x","§64x","§c5x","§4MAX"};
         Material[] icons = {Material.DIRT,Material.GRASS_BLOCK,Material.OAK_PLANKS,Material.GOLD_INGOT,
