@@ -1,7 +1,6 @@
 package com.omniadmin.listeners;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -27,8 +26,8 @@ public class ChestTriggerListener implements Listener {
         Player p = e.getPlayer();
         if (!p.hasPermission("oas.use")) return;
         Chest chest = (Chest) b.getState();
-        if (chest.customName() == null) return;
-        String name = PlainTextComponentSerializer.plainText().serialize(chest.customName());
+        if (chest.getCustomName() == null) return;
+        String name = chest.getCustomName();
         if (!name.equalsIgnoreCase(TRIGGER)) return;
         e.setCancelled(true);
         plugin.getMainMenu().open(p);
