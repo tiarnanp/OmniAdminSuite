@@ -638,12 +638,12 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         sm.setOwningPlayer(p);
         double maxHp = Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
         sm.setDisplayName("§e§l" + p.getName());
-        sm.setLore(List.of(
-            "§7HP: §c" + String.format("%.1f",p.getHealth() + "§7/§c" + (int)maxHp),
-            "§7Gamemode: §f" + p.getGameMode(.name()),
+        sm.setLore(java.util.Arrays.asList(
+            "§7HP: §c" + String.format("%.1f", p.getHealth()) + "§7/§c" + (int)maxHp,
+            "§7Gamemode: §f" + p.getGameMode().name(),
             "§7Level: §a" + p.getLevel(),
-            "§7World: §f" + p.getWorld(.getName()),
-            "§7Ping: §f" + p.getPing( + "ms"),
+            "§7World: §f" + p.getWorld().getName(),
+            "§7Ping: §f" + p.getPing() + "ms",
             "",
             "§eClick to manage"
         ));
@@ -657,17 +657,17 @@ public class PlayerAdminGUI extends GuiBase implements Listener {
         sm.setOwningPlayer(p);
         double maxHp = Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
         sm.setDisplayName("§e§l" + p.getName());
-        sm.setLore(List.of(
-            "§7Health: §c" + String.format("%.1f",p.getHealth() + "§7/§c"+(int)maxHp),
-            "§7Food: §6" + p.getFoodLevel( + "§7/§620"),
-            "§7Gamemode: §f" + p.getGameMode(.name()),
+        sm.setLore(java.util.Arrays.asList(
+            "§7Health: §c" + String.format("%.1f", p.getHealth()) + "§7/§c" + (int)maxHp,
+            "§7Food: §6" + p.getFoodLevel() + "§7/§620",
+            "§7Gamemode: §f" + p.getGameMode().name(),
             "§7XP Level: §a" + p.getLevel(),
-            "§7Fly: §f" + (p.isFlying(?"§aON":"§cOFF")),
-            "§7Vanish: §f" + (p.isInvisible(?"§aON":"§cOFF")),
-            "§7World: §f" + p.getWorld(.getName()),
-            "§7Ping: §f" + p.getPing( + "ms"),
-            "§7IP: §f" + (p.getAddress(!=null?p.getAddress().getAddress().getHostAddress():"unknown")),
-            "§7Active Effects: §f" + p.getActivePotionEffects(.size())
+            "§7Fly: §f" + (p.isFlying() ? "§aON" : "§cOFF"),
+            "§7Vanish: §f" + (p.isInvisible() ? "§aON" : "§cOFF"),
+            "§7World: §f" + p.getWorld().getName(),
+            "§7Ping: §f" + p.getPing() + "ms",
+            "§7IP: §f" + (p.getAddress() != null ? p.getAddress().getAddress().getHostAddress() : "unknown"),
+            "§7Active Effects: §f" + p.getActivePotionEffects().size()
         ));
         head.setItemMeta(sm);
         return head;
