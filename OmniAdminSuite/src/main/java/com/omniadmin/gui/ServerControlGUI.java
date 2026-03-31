@@ -1,7 +1,7 @@
 package com.omniadmin.gui;
 
 import com.omniadmin.OmniAdminSuite;
-import net.kyori.adventure.text.Component;
+
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
@@ -20,7 +20,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
 
     public void open(Player admin) {
         Inventory gui = Bukkit.createInventory(null, 54,
-                Component.text("§c§lServer Control §8// §7Global Powers"));
+                "§c§lServer Control §8// §7Global Powers");
 
         int online   = Bukkit.getOnlinePlayers().size();
         int maxPlayers = Bukkit.getMaxPlayers();
@@ -104,7 +104,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
             case 10 -> {
                 Bukkit.getOnlinePlayers().forEach(p -> p.showTitle(
                     net.kyori.adventure.title.Title.title(
-                        Component.text("§6§l⚡ SERVER EVENT"), Component.text("§eCheck the chat for details!"),
+                        "§6§l⚡ SERVER EVENT", "§eCheck the chat for details!",
                         net.kyori.adventure.title.Title.Times.times(
                             java.time.Duration.ofMillis(500), java.time.Duration.ofSeconds(4), java.time.Duration.ofMillis(500)))));
                 admin.sendMessage("§a✔ Title sent to all players");
@@ -274,7 +274,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
     }
 
     private void broadcast(Player admin, String msg) {
-        Bukkit.broadcast(Component.text(msg));
+        Bukkit.broadcastMessage(msg);
         admin.sendMessage("§a✔ Broadcast sent.");
     }
 
