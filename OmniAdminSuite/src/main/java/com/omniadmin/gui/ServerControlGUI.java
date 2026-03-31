@@ -72,7 +72,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
         gui.setItem(39, make(Material.DIAMOND_SWORD,   "§c§lKill All Players",      "§c⚠ Kills every online player"));
         gui.setItem(40, make(Material.GOLDEN_APPLE,    "§a§lRevive All Players",    "§7Heal + respawn all dead players","§7(sends to spawn with full health)"));
         gui.setItem(41, make(Material.WATER_BUCKET,    "§9§lRain on All Worlds",    "§7Set storm on all loaded worlds"));
-        gui.setItem(42, make(Material.SUN_FLOWER,      "§e§lDay on All Worlds",     "§7Set day on all loaded worlds"));
+        gui.setItem(42, make(Material.SUNFLOWER,      "§e§lDay on All Worlds",     "§7Set day on all loaded worlds"));
         gui.setItem(43, make(Material.NETHER_STAR,     "§6§lServer Broadcast Stats","§7Show online count, TPS,","§7memory usage to everyone"));
         gui.setItem(44, make(Material.EXPERIENCE_BOTTLE,"§a§lEnable All Gamerules", "§7Reset all gamerules to default"));
 
@@ -217,8 +217,8 @@ public class ServerControlGUI extends GuiBase implements Listener {
             }
             case 38 -> {
                 World w = Bukkit.getWorlds().get(0);
-                boolean cur = Boolean.TRUE.equals(w.getGameRuleValue(GameRule.PVP));
-                w.setGameRule(GameRule.PVP, !cur);
+                boolean cur = Boolean.TRUE.equals(w.getGameRuleValue(GameRule.PVP_ENABLED));
+                w.setGameRule(GameRule.PVP_ENABLED, !cur);
                 admin.sendMessage("§ePvP (global): " + (!cur?"§aON":"§cOFF"));
                 open(admin);
             }
@@ -259,7 +259,7 @@ public class ServerControlGUI extends GuiBase implements Listener {
                 w.setGameRule(GameRule.DO_FIRE_TICK, true);
                 w.setGameRule(GameRule.RANDOM_TICK_SPEED, 3);
                 w.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
-                w.setGameRule(GameRule.TNT_EXPLODES, true);
+                w.setGameRule(GameRule.TNT_EXPLODING, true);
                 admin.sendMessage("§a✔ All gamerules reset to defaults");
                 open(admin);
             }
